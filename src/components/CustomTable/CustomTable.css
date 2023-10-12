@@ -1,0 +1,31 @@
+.table-container {
+    padding: 12px;
+}
+
+.table {
+    width: 100%;
+    border: thin solid black;
+    border-spacing: 0;
+}
+
+.table-header {
+    font-size: 18px;
+    font-weight: bold;
+    border: thin solid black;
+    height: 60px;
+    width: 140px;
+    max-width: 140px;
+    max-height: 60px;
+}
+
+.table-data {
+    padding: 8px;
+    font-size: 16px;
+    font-weight: normal;
+    border: thin solid black;
+    height: 60px;
+    max-height: 60px;
+    width: 140px;
+    max-width: 140px;
+    overflow: auto;
+}

@@ -16,14 +16,15 @@ function CustomTable(props: Props) {
 
     useEffect(() => {
         const { measureName, tableData } = props;
+        //Storing the headers alone in the state
         const headers: string[] = Object.keys(tableData);
+        //This session used to rounded off the values to 3 decimal places
         const content: TableType[] = headers.map(headerName => {
             const { mean, median, mode } = tableData[headerName];
-            //This session used to rounded off the values to 3 decimal places
             return {
                 mean: mean.toFixed(3),
                 median: median.toFixed(3),
-                mode: mode.map(val => val.toFixed(3)),
+                mode: mode.map(val => val.toFixed(3)).join(', '),
             }
         });
         setTableName(measureName);
@@ -52,7 +53,7 @@ function CustomTable(props: Props) {
                         </tr>
                         <tr>
                             <td className="table-header">{tableName} Mode</td>
-                            {tableContent.map((content: TableType, idx: number) => <td key={idx} className="table-data">{content.mode.join(', ')}</td>)}
+                            {tableContent.map((content: TableType, idx: number) => <td key={idx} className="table-data">{content.mode}</td>)}
                         </tr>
                     </tbody>
                 </table>

@@ -7,7 +7,7 @@ export interface StatisticsTypes {
 export interface TableType {
     mean: string,
     median: string,
-    mode: string[],
+    mode: string,
 }
 
 export interface StatisticsDataType {

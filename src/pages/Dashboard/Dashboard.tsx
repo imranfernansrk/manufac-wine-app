@@ -27,30 +27,34 @@ function Dashboard() {
                     flavanoidsClasses[alcoholClass] = [];
                 }
                 const flavanoidsValue = checkAndConvertNumber(data.Flavanoids);
+                //Storing the flavanoids array value
                 flavanoidsClasses[alcoholClass] = [...flavanoidsClasses[alcoholClass], flavanoidsValue];
 
                 if (!gammaClasses[alcoholClass]) {
                     gammaClasses[alcoholClass] = [];
                 }
                 const gammaValue = getGammaValue(data);
+                //Storing the gamma array value
                 gammaClasses[alcoholClass] = [...gammaClasses[alcoholClass], gammaValue];
             });
+            //here, array of flavanoids values will convert into mean, median and mode values for table
             const flavanoidsTableData: StatisticsDataType = getTableDataFormat(flavanoidsClasses);
             setFlavanoidsData(flavanoidsTableData);
+            //here, array of gamma values will convert into mean, median and mode values for table
             const gammaTableData: StatisticsDataType = getTableDataFormat(gammaClasses);
             setGammaData(gammaTableData);
         }
         // eslint-disable-next-line
     }, [wineData]);
 
-    //This function is used to convert the number if value is not integer
+    //This function is used to check and convert the number if value is not an integer
     const checkAndConvertNumber = (value: any): number => {
         const numValue = typeof value === "number" ? value :
             Number.isInteger(value) ? parseInt(value, 10) : parseFloat(value);
         return numValue;
     }
 
-    //This function is used to calculate the gamma property: (Ash * Hue) / Magnesium
+    //This function is used to calculate the gamma property. Formula: (Ash * Hue) / Magnesium
     const getGammaValue = (data: any): number => {
         const ashValue = checkAndConvertNumber(data.Ash);
         const hueValue = checkAndConvertNumber(data.Hue);
@@ -59,7 +63,7 @@ function Dashboard() {
         return gammaValue;
     }
 
-    //This function is used to convert the plain array into statistics values for table's content
+    //This function is used to convert the plain array of values into statistics values for table's content
     const getTableDataFormat = (data: { [key: string]: any }): StatisticsDataType => {
         const tableData: StatisticsDataType = {};
         Object.keys(data).forEach(alcoholClass => {
